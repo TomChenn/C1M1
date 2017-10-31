@@ -78,7 +78,7 @@ void main() {
   
   if(i%2==0){
     median=i/2;
-    printf("%d\n",test[median]);
+    printf("%d\n \n",test[median]);
   }
 
   /* Statistics and Printing Functions Go Here */
