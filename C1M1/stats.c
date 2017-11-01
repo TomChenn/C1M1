@@ -9,20 +9,90 @@
  *
  *****************************************************************************/
 /**
- * @file <Add File Name> 
+ * @file stats.c
  * @brief <Add Brief Description Here >
  *
  * <Add Extended Description Here>
  *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Tom_Chen
+ * @date 2017/11/1
  * test3
  */
 
 
-
 #include <stdio.h>
 #include "stats.h"
+
+int find_mean(unsigned char array[], int size){
+  float means;
+  int k;
+  means=0;
+
+  for(k=0;k<40;k++){
+    if(k<40){
+      means=array[k]+means;
+    }
+  }
+  means=means/k;
+  return means;
+}
+
+int find_minimum(unsigned char array[], int size){
+  int min,i;
+  min=array[0];
+  for(i=0;i<40;i++){
+    if(min>array[i]){
+      min=array[i];
+    }
+  }
+  return min;
+
+}
+
+
+int find_maximum(unsigned char array[], int size){
+  int max,j;
+  max=array[0];
+  for(j=0;j<40;j++){
+    if(max<array[j]){
+      max=array[j];
+    }
+  }
+  return max;
+
+}
+
+void sort_array(unsigned char array[], int size){
+  int i,j,t,c;
+  for(int c=0;c<(size-1);c++){
+    for(int j=0; j<size-c-1;j++){
+      if(array[j]>array[j+1]){
+        t=array[j];
+        array[j]=array[j+1];
+        array[j+1]=t;
+      }
+    }
+  }
+
+//  for(i=0;i<size;i++){
+//  printf("%d\n",array[i]);
+//  }
+}
+
+int find_median(unsigned char array[], int size){
+  int median=0;
+  sort_array(array,size);
+  
+  if(size%2 ==1){
+    median=array[(size/2)+1];
+  }
+  else{
+    median=0.5*(array[(size/2)-1] + array[size/2]);
+  }
+  
+  return median;
+}
+
 
 /* Size of the Data Set */
 #define SIZE (40)
@@ -34,56 +104,24 @@ void main() {
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
+  
+
 
   /* Other Variable Declarations Go Here */
-  int k=0,j=0,i=0, min, max, median,q,w,t;
-  float means;
-  min=test[0];
-  for(i=0;i<40;i++){
-    if(min>test[i]){
-      min=test[i];
-    }
-  }
-  printf("Min:%d\n",min);
 
-  max=test[0];
-  for(j=0;j<40;j++){
-    if(max<test[j]){
-      max=test[j];
-    }
-  }
-  printf("Max:%d\n",max);
 
-  means=0;
-  for(k=0;k<40;k++){
-    if(k<40){
-      means=test[k]+means;
-    }
-  }
-  means=means/k;
-  printf("Means:%f\n",means);
 
-  for(q=38;q>=0;q--){
-    for(w=0;w<=q;w++){
-      if(test[w]>test[w+1]){
-        t=test[w];
-        test[w]=test[w+1];
-        test[w+1]=t;
-      }
-    }
-  }
-  for(i=0;i<40;i++){
-  printf("%d\n,",test[i]);
-  }
-  
-  if(i%2==0){
-    median=i/2;
-    printf("%d\n \n",test[median]);
-  }
+
+
 
   /* Statistics and Printing Functions Go Here */
 
-  
+    printf("Means:%d\n",find_mean(test,SIZE));
+    printf("Min:%d\n",find_minimum(test,SIZE));
+    printf("Max:%d\n",find_maximum(test,SIZE));
+    printf("Median:%d\n",find_median(test,SIZE));
+
+
 }
 
 /* Add other Implementation File Code Here */
