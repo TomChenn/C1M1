@@ -63,20 +63,20 @@ int find_maximum(unsigned char array[], int size){
 }
 
 void sort_array(unsigned char array[], int size){
-  int i,j,t,c;
-  for(int c=0;c<(size-1);c++){
-    for(int j=0; j<size-c-1;j++){
-      if(array[j]>array[j+1]){
-        t=array[j];
-        array[j]=array[j+1];
-        array[j+1]=t;
+  int i=0;
+  int j=0; 
+  int k=0;
+  for(i=0;i<size;i++){
+    for(j=i;j<size;j++){
+      if(array[j]>array[i]){
+        k = array[j];
+        array[j] = array[i];
+        array[i] = k;
       }
     }
   }
 
-//  for(i=0;i<size;i++){
-//  printf("%d\n",array[i]);
-//  }
+
 }
 
 int find_median(unsigned char array[], int size){
@@ -121,7 +121,9 @@ void main() {
     printf("Max:%d\n",find_maximum(test,SIZE));
     printf("Median:%d\n",find_median(test,SIZE));
 
-
+    for(int i=0;i<SIZE;i++){
+      printf("%d\n",test[i]);
+    }
 }
 
 /* Add other Implementation File Code Here */
